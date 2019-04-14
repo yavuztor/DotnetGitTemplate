@@ -3,6 +3,22 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>gittemplate</ToolCommandName>
+    <Version>0.1.0</Version>
+    <PackageId>dotnet-gittemplate</PackageId>
+    <PackageTags>dotnet;template;git</PackageTags>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/yavuztor/DotnetGitTemplate/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/yavuztor/DotnetGitTemplate</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/yavuztor/DotnetGitTemplate</RepositoryUrl>
+    <Summary>Manage dotnet templates using git repository sources</Summary>
+    <Authors>Yavuz Tor</Authors>
+    <Description>Dotnet tool to manage your templates from a shared git repository, instead of local folders or nuget feeds.
+      I needed a tool to make it easier to use a git repository and could not find a tool to manage this for me.
+      So, this initial version does the very minimum to do just that.
+    </Description>
+    <PackageReleaseNotes>https://github.com/yavuztor/DotnetGitTemplate/ReleaseNotes.md</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
