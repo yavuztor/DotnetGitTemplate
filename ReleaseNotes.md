@@ -10,3 +10,7 @@
 
 * Release notes
 * Updated descriptions.
+
+## 0.1.2 - Minor improvements
+
+* Added `--branch | -b` option to checkout code from specific branch. __NOTE: Only one branch per repository can be used__.

@@ -24,12 +24,14 @@ namespace DotnetGitTemplate
             
             app.Command("add", cmd => {
                 cmd.Description = "Add templates from git repository";
-                cmd.HelpOption("-?|-h|--help");
                 cmd.Argument("gitrepo", "Git repository that has the dotnet templates", false);
+                cmd.Option("-b|--branch <branchname>", "Branch name, if different from master", CommandOptionType.SingleValue);
+                cmd.HelpOption("-?|-h|--help");
                 cmd.OnExecute(() =>
                 {
                     string repo = cmd.Arguments[0].Value;
-                    core.Add(repo);
+                    string branch = cmd.Options[0].HasValue() ? cmd.Options[0].Value() : "master";
+                    core.Add(repo, branch);
                     return 0;
                 });
             });

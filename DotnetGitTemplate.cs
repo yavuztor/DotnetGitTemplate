@@ -17,11 +17,11 @@ namespace DotnetGitTemplate
             this.config = config;
         }
 
-        public void Add(string repo) 
+        public void Add(string repo, string branch) 
         {
             Remove(repo);
+            repoManager.Clone(repo, branch);
             var repoPath = repoManager.GetRepoPath(repo);
-            repoManager.Clone(repo);
             var templates = templateManager.RegisterTemplates(repoPath);
             config.Repositories.Add(repo, templates);
         }

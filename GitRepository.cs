@@ -16,10 +16,10 @@ namespace DotnetGitTemplate
             this.rootPath = rootPath;
         }
 
-        public void Clone(string repo)
+        public void Clone(string repo, string branch)
         {
             var name = GetRepoName(repo);
-            var info = new ProcessStartInfo("git", $"clone {repo} -o {name}");
+            var info = new ProcessStartInfo("git", $"clone --depth 1 -b {branch} -o {name} {repo}");
             info.WorkingDirectory = rootPath;
             Process.Start(info).WaitForExit();
             
