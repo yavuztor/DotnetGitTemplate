@@ -20,6 +20,7 @@ namespace DotnetGitTemplate
         public void Add(string repo, string branch) 
         {
             Remove(repo);
+            Console.WriteLine($"Adding repository {repo}.");
             repoManager.Clone(repo, branch);
             var repoPath = repoManager.GetRepoPath(repo);
             var templates = templateManager.RegisterTemplates(repoPath);
@@ -32,6 +33,7 @@ namespace DotnetGitTemplate
             var repoPath = repoManager.GetRepoPath(repo);
             if (!Directory.Exists(repoPath)) return;
 
+            Console.WriteLine($"Removing repo {repo}");
             templateManager.DeregisterTemplates(repoPath);
             Directory.Delete(repoPath, true);
         }
@@ -40,8 +42,8 @@ namespace DotnetGitTemplate
         {
             foreach (var repo in config.Repositories.Keys)
             {
-                Console.WriteLine(repo);
-                Console.WriteLine(string.Join("\r\n", config.Repositories[repo].Select(t => $"\t{t}")));
+                Console.WriteLine($"Templates from {repo}:");
+                Console.WriteLine(string.Join("\r\n", config.Repositories[repo].Select(t => $"\t- {t}")));
             }
         }
 
@@ -50,8 +52,12 @@ namespace DotnetGitTemplate
             var repositories = config.Repositories.Keys.ToArray();
             foreach (var repo in repositories)
             {
-                templateManager.DeregisterTemplates(repo);
-                templateManager.RegisterTemplates(repo);
+                Console.WriteLine($"Removing templates from repository {repo}...");
+                var repoPath = repoManager.GetRepoPath(repo);
+                templateManager.DeregisterTemplates(repoPath);
+                repoManager.Pull(repo);
+                Console.WriteLine("Adding back templates:");
+                templateManager.RegisterTemplates(repoPath);
             }
 
         }

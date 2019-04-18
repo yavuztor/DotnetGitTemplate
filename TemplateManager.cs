@@ -15,7 +15,9 @@ namespace DotnetGitTemplate
 
         public void Install(string templatePath)
         {
-            Process.Start("dotnet", $"new -i {templatePath}").WaitForExit();
+            var info = new ProcessStartInfo("dotnet", $"new -i {templatePath}");
+            info.RedirectStandardOutput = true;
+            Process.Start(info).WaitForExit();
         }
 
         public string[] RegisterTemplates(string rootPath)
@@ -30,7 +32,9 @@ namespace DotnetGitTemplate
 
         public void Uninstall(string templatePath)
         {
-            Process.Start("dotnet", $"new -u {templatePath}").WaitForExit();
+            var info = new ProcessStartInfo("dotnet", $"new -i {templatePath}");
+            info.RedirectStandardOutput = true;
+            Process.Start(info).WaitForExit();
         }
 
         private static void ScanFolderForTemplate(string templatePath, Action<string> action)
@@ -41,6 +45,7 @@ namespace DotnetGitTemplate
             if (Directory.Exists(folderPath))
             {
                 action(templatePath);
+                Console.WriteLine($"\t- {GetDotnetTemplateName(templatePath)}");
             }
             else
             {
