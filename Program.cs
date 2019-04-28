@@ -13,7 +13,7 @@ namespace DotnetGitTemplate
         static void Main(string[] args)
         {
             var config = AppConfig.ReadFrom(GetConfigurationPath());
-            var repoManager = new GitRepository(config, DotnetGitTemplate.GetDataFolder());
+            var repoManager = new HybridRepository(new GitRepository(config, DotnetGitTemplate.GetDataFolder()));
             var templateManager = new TemplateManager();
             var core = new DotnetGitTemplate(repoManager, templateManager, config);
 

@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.1.4 - Allow local directories
+
+* Give local directory path as the repo in order to register all templates under that given folder.
+
 ## 0.1.3 - Changed console output
 
 * Silenced template registration messages on console and instead print out template name for easier-to-read output.

@@ -35,7 +35,7 @@ namespace DotnetGitTemplate
 
             Console.WriteLine($"Removing repo {repo}");
             templateManager.DeregisterTemplates(repoPath);
-            Directory.Delete(repoPath, true);
+            repoManager.Remove(repo);
         }
 
         public void List()

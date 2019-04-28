@@ -25,7 +25,7 @@ namespace DotnetGitTemplate
             
         }
 
-        public string GetRepoName(string repo)
+        private string GetRepoName(string repo)
         {
             return repo.Split("/").Last().Replace(".git", "");
         }
@@ -43,6 +43,12 @@ namespace DotnetGitTemplate
         public string GetRepoPath(string repo)
         {
             return System.IO.Path.Combine(rootPath, GetRepoName(repo));
+        }
+
+        public void Remove(string repo)
+        {
+            var path = GetRepoPath(repo);
+            if (Directory.Exists(path)) Directory.Delete(path);
         }
     }
 }
